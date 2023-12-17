@@ -22,6 +22,13 @@ pipeline{
                 sh "mvn -f /mnt/test/project clean install"
             }
         }
+        stage("upload in s3"){
+            steps{
+                
+        def identity=awsIdentity();
+        s3Upload acl: 'PublicRead', bucket: 's3-snehabuck', file: '/mnt/test/project/target/*.war', path: "war", workingDir: '.'
+            }
+        }
         stage("deploying"){
             steps {
                 sh "cp /mnt/test/project/target/*.war /mnt/apache-tomcat-9.0.83/webapps"
