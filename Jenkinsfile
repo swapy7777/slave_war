@@ -29,6 +29,7 @@ pipeline{
                       s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'/mnt/test/project/target/*.war', bucket:'s3-snehabuck')
                   }
               }
+        }
         stage("deploying"){
             steps {
                 sh "cp /mnt/test/project/target/*.war /mnt/apache-tomcat-9.0.83/webapps"
