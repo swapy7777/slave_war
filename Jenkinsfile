@@ -24,8 +24,7 @@ pipeline{
         }
         stage("upload in s3"){
             steps{
-                
-        def identity=awsIdentity();
+      
         s3Upload acl: 'PublicRead', bucket: 's3-snehabuck', file: '/mnt/test/project/target/*.war', path: "war", workingDir: '.'
             }
         }
