@@ -24,11 +24,11 @@ pipeline{
         }
         stage("upload file"){
             steps {
-                dir("/mnt/test/project/target"){
+                dir(""){
                     withAWS(region:'ap-south-1',credentials:'s3_access') {
                    // def identity=awsIdentity();
                 // Upload files from working directory to project workspace
-                    s3Upload(bucket:"s3-snehabuck", workingDir:'.', includePathPattern:'**/*.war');
+                    s3Upload(bucket:"s3-snehabuck", workingDir:'/mnt/test/project/target', includePathPattern:'**/*.war');
             }
 
         };
