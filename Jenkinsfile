@@ -28,6 +28,7 @@ pipeline{
                     withAWS(region:'ap-south-1',credentials:'s3_access') {
                    // def identity=awsIdentity();
                 // Upload files from working directory to project workspace
+                        echo "s3upload"
                     s3Upload(bucket:"test-s3buck123", workingDir:'/mnt/test/project/target', includePathPattern:'**/*.war');
                     }
             }
