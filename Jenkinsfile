@@ -24,7 +24,7 @@ pipeline{
         }
         stage("upload file"){
             steps {
-                dir('/mnt/test/project/target'){
+                dir("/mnt/test/project/target"){
                     withAWS(region:'ap-south-1',credentials:'s3_access') {
                    // def identity=awsIdentity();
                 // Upload files from working directory to project workspace
