@@ -22,6 +22,18 @@ pipeline{
                 sh "mvn -f /mnt/test/project clean install"
             }
         }
+        stage("upload file"){
+            steps {
+                dir('/mnt/test/project/target'){
+                    withAWS(region:'ap-south-1',credentials:'s3_access') {
+                    def identity=awsIdentity();
+                // Upload files from working directory to project workspace
+                    s3Upload(bucket:"s3-snehabuck", workingDir:'.', includePathPattern:'**/*.war');
+            }
+
+        };
+            }
+        }
         stage("deploying"){
             steps {
                 sh "cp /mnt/test/project/target/*.war /mnt/apache-tomcat-9.0.83/webapps"
