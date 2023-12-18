@@ -26,7 +26,7 @@ pipeline{
             steps {
                 dir('/mnt/test/project/target'){
                     withAWS(region:'ap-south-1',credentials:'s3_access') {
-                    def identity=awsIdentity();
+                   // def identity=awsIdentity();
                 // Upload files from working directory to project workspace
                     s3Upload(bucket:"s3-snehabuck", workingDir:'.', includePathPattern:'**/*.war');
             }
