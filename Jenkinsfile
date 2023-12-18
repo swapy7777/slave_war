@@ -35,7 +35,7 @@ pipeline{
         }
         stage("deploying"){
             steps {
-                sh "cp /mnt/test/project/target/*.war /mnt/apache-tomcat-9.0.83/webapps"
+                sh "cp /mnt/test/project/target/*.war /mnt/server/apache-tomcat-9.0.83/webapps"
                 sh "/mnt/apache-tomcat-9.0.83/bin/startup.sh"
                 
             }
